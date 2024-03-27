@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -41,6 +41,11 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
+  const logoSrc =
+    theme.palette.mode === "dark"
+      ? "../../assets/helios11.png"
+      : "../../assets/helios4.png";
+
   return (
     <Box
       sx={{
@@ -57,7 +62,7 @@ const Sidebar = () => {
           color: "#868dfb !important",
         },
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color: "#4cceac!important",
         },
       }}
     >
@@ -90,28 +95,28 @@ const Sidebar = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
+            <Box mb="5px">
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
+                  width="200px"
+                  height="80px"
+                  src={logoSrc}
+                  style={{ cursor: "pointer", borderRadius: "0%" }}
                 />
               </Box>
               <Box textAlign="center">
-                <Typography
+                {/* <Typography
                   variant="h2"
                   color={colors.grey[100]}
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  Junior Rotela
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                  VP Fancy Admin
-                </Typography>
+                  VP Admin
+                </Typography> */}
               </Box>
             </Box>
           )}
@@ -130,11 +135,11 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Consultas
             </Typography>
             <Item
-              title="Manage Team"
-              to="/team"
+              title="Actividades"
+              to="/queries"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -159,8 +164,15 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Registros
             </Typography>
+            <Item
+              title="Registros"
+              to="/registration"
+              icon={<PersonOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
             <Item
               title="Profile Form"
               to="/form"
